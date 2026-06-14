@@ -1,0 +1,38 @@
+pre-commit:
+  parallel: true
+  commands:
+    vet:
+      name: go vet
+      run: go vet ./...
+    fmt:
+      name: go fmt check
+      run: |
+        unformatted=$(gofmt -l .)
+        if [ -n "$unformatted" ]; then
+          echo "Run 'go fmt ./...' to fix formatting in:"
+          echo "$unformatted"
+          exit 1
+        fi
+    test:
+      name: go test
+      run: go test ./...
+
+pre-push:
+  commands:
+    test:
+      name: go test (full)
+      run: go test ./... -v
+
+commit-msg:
+  commands:
+    lint:
+      name: commit message format
+      run: |
+        msg=$(cat {1})
+        if ! echo "$msg" | grep -qE "^(feat|fix|chore|docs|refactor|test|style|ci|build|perf)(\(.+\))?: .{1,100}"; then
+          echo "Invalid commit message: '$msg'"
+          echo "Format: <type>(<scope>): <subject>"
+          echo "Types: feat|fix|chore|docs|refactor|test|style|ci|build|perf"
+          echo "Example: feat(user): add pagination to list endpoint"
+          exit 1
+        fi

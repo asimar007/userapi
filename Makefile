@@ -1,4 +1,4 @@
-.PHONY: help run build test tidy sqlc migrate-up migrate-down docker-up docker-down
+.PHONY: help run build test tidy sqlc migrate-up migrate-down docker-up docker-down hooks
 
 DB_URL ?= postgres://postgres:postgres@localhost:5432/userdb?sslmode=disable
 
@@ -13,6 +13,7 @@ help:
 	@echo "  migrate-down  Drop the schema (requires psql)"
 	@echo "  docker-up     Start app + postgres via docker compose"
 	@echo "  docker-down   Stop docker compose stack"
+	@echo "  hooks         Install lefthook git hooks"
 
 run:
 	go run ./cmd/server
@@ -40,3 +41,7 @@ docker-up:
 
 docker-down:
 	docker compose down
+
+hooks:
+	go install github.com/evilmartians/lefthook@latest
+	lefthook install
