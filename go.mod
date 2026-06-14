@@ -1,4 +1,4 @@
-module github.com/example/userapi
+module github.com/asimar007/userapi
 
 go 1.22
 

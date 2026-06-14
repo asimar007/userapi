@@ -8,8 +8,8 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"go.uber.org/zap"
 
-	"github.com/example/userapi/internal/models"
-	"github.com/example/userapi/internal/service"
+	"github.com/asimar007/userapi/internal/models"
+	"github.com/asimar007/userapi/internal/service"
 )
 
 // UserHandler wires HTTP requests to the user service.

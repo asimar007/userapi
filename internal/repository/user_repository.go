@@ -8,7 +8,7 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/example/userapi/db/sqlc"
+	"github.com/asimar007/userapi/db/sqlc"
 )
 
 // ErrNotFound is returned when a requested user does not exist.

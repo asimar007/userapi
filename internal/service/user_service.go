@@ -6,9 +6,9 @@ import (
 
 	"go.uber.org/zap"
 
-	"github.com/example/userapi/db/sqlc"
-	"github.com/example/userapi/internal/models"
-	"github.com/example/userapi/internal/repository"
+	"github.com/asimar007/userapi/db/sqlc"
+	"github.com/asimar007/userapi/internal/models"
+	"github.com/asimar007/userapi/internal/repository"
 )
 
 // ErrNotFound is re-exported so handlers depend on the service layer only.

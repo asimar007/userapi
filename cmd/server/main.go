@@ -12,12 +12,12 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 	"go.uber.org/zap"
 
-	"github.com/example/userapi/config"
-	"github.com/example/userapi/internal/handler"
-	"github.com/example/userapi/internal/logger"
-	"github.com/example/userapi/internal/repository"
-	"github.com/example/userapi/internal/routes"
-	"github.com/example/userapi/internal/service"
+	"github.com/asimar007/userapi/config"
+	"github.com/asimar007/userapi/internal/handler"
+	"github.com/asimar007/userapi/internal/logger"
+	"github.com/asimar007/userapi/internal/repository"
+	"github.com/asimar007/userapi/internal/routes"
+	"github.com/asimar007/userapi/internal/service"
 )
 
 func main() {

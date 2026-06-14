@@ -4,8 +4,8 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"go.uber.org/zap"
 
-	"github.com/example/userapi/internal/handler"
-	"github.com/example/userapi/internal/middleware"
+	"github.com/asimar007/userapi/internal/handler"
+	"github.com/asimar007/userapi/internal/middleware"
 )
 
 // Register attaches all routes and middleware to the Fiber app.
