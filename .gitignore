@@ -4,11 +4,17 @@
 *.exe
 *.out
 
-# Env
+# Env (keep .env.example tracked)
 .env
+.env.local
 
-# Vendor (using modules)
+# Vendor (using Go modules)
 /vendor/
+
+# Go test/coverage artifacts
+*.test
+coverage.out
+coverage.html
 
 # IDE / OS
 .idea/
