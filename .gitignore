@@ -1,0 +1,19 @@
+# Binaries
+/server
+/userapi-server
+*.exe
+*.out
+
+# Env
+.env
+
+# Vendor (using modules)
+/vendor/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+
+# Logs
+*.log
