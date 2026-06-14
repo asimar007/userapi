@@ -20,6 +20,8 @@ using Go's `time` package. Treat that invariant as load-bearing: do not add an
 - SQLC — generates the typed DB access layer from SQL
 - Uber Zap — structured logging
 - go-playground/validator/v10 — request validation
+- Lefthook — Git hooks manager (`lefthook.yml`)
+- Prettier — formatter for YAML, Markdown, JSON, SQL (`.prettierrc`)
 
 ## Architecture & layering
 
@@ -96,8 +98,16 @@ go test ./... -v               # age logic is covered in internal/models/user_te
 # Codegen
 sqlc generate
 
+# Git hooks (run once after cloning)
+make hooks                     # installs lefthook into .git/hooks/
+lefthook run pre-commit        # manually trigger pre-commit hooks
+
+# Prettier (format non-Go files)
+npx prettier --write "**/*.{yml,yaml,md,json,sql}"   # auto-fix
+npx prettier --check "**/*.{yml,yaml,md,json,sql}"   # check only
+
 # Make targets
-make help                      # build / test / run / migrate-up / docker-up / etc.
+make help                      # build / test / run / migrate-up / docker-up / hooks / etc.
 ```
 
 ## Configuration
@@ -124,7 +134,24 @@ Env vars (see `.env.example`). With Docker these are set in
   It must: subtract a year if the birthday hasn't occurred yet this year, handle
   Feb-29 birthdays, and clamp future DOBs to 0.
 - Run `go vet ./...` and `go test ./...` before considering a change done.
+- Format non-Go files with Prettier before committing (`npx prettier --write`).
+  Go files are formatted with `gofmt` only — Prettier ignores them (see
+  `.prettierignore`).
 - Do not commit secrets; `.env` is gitignored (`.env.example` is the template).
+
+## Git hooks (Lefthook)
+
+`lefthook.yml` defines three hooks that run automatically after `make hooks`:
+
+|Hook|Trigger|Checks|
+|---|---|---|
+|pre-commit|`git commit`|`go vet`, `gofmt`, `go test`, Prettier|
+|pre-push|`git push`|`go test ./... -v`|
+|commit-msg|`git commit`|Conventional commit format|
+
+Commit message format: `<type>(<scope>): <subject>`
+Allowed types: `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `style`,
+`ci`, `build`, `perf`.
 
 ## Known notes / gotchas
 

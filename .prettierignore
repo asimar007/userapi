@@ -1,0 +1,13 @@
+# Go files are formatted by gofmt, not Prettier
+*.go
+go.sum
+go.mod
+
+# Generated files
+db/sqlc/
+
+# Binary / image assets
+docs/img/
+
+# System
+.DS_Store
